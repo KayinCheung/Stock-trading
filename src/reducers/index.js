@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import stockReducer from "./stockReducer";
+import stockDataReducer from "./stockDataReducer";
+import tradeReducer from "./tradeReducer";
 
 const rootReducer = combineReducers({
-  stock: stockReducer
+  stock: stockDataReducer,
+  trade: tradeReducer
 });
 
 export default rootReducer;

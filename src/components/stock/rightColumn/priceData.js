@@ -25,28 +25,20 @@ class PriceData extends React.Component {
             </tr>
             <tr className="is-size-7">
               <td>Daily P&L</td>
-              <td>0</td>
+              <td className="has-text-right">0</td>
               <td>Unrealized</td>
               <td className="has-text-right">0</td>
             </tr>
             <tr className="is-size-7">
               <td>Cost Basis</td>
-              <td>0</td>
+              <td className="has-text-right">0</td>
               <td>Mkt Value</td>
               <td className="has-text-right">0</td>
             </tr>
-            <tr className="is-size-7">
-              <td />
-              <td />
-              <td />
-              <td className="has-text-right">
-                <button className="button is-outlined is-link is-small">
-                  Close Position
-                </button>
-              </td>
-            </tr>
+           
           </tbody>
         </table>
+        
       </div>
     );
   }
