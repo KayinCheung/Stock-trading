@@ -12,7 +12,7 @@ class PriceData extends React.Component {
               <td style={{ width: "25%" }} />
               <td style={{ width: "25%" }} />
               <td style={{ width: "25%" }} className="has-text-right">
-                $288.71
+                {}
               </td>
             </tr>
           </thead>
@@ -54,6 +54,7 @@ class PriceData extends React.Component {
 
 const mapStateToProps = state => ({
   //current stock name
+
 });
 
 export default connect(mapStateToProps, {})(PriceData);

@@ -1,4 +1,4 @@
-import { START_LOAD_STOCK_DATA, LOAD_STOCK_DATA } from "./types";
+import { START_LOAD_STOCK_DATA, LOAD_STOCK_DATA, LOAD_KEY_STATS, LOAD_STOCK_PROFILE } from "./types";
 
 import { stock_base_url, secret } from "../config";
 /*
@@ -17,14 +17,31 @@ const loadStockData = symbol => dispatch => {
   console.log(stock_base_url);
 
   const key_stats_endpoint = `stock/${symbol}/stats`;
+  const profile_endpoint = `stock/${symbol}/company`;
   //const price_endpoint = `stock/${symbol}/quote/`; //might not have data
   fetch(`${stock_base_url}/${key_stats_endpoint}?token=${secret}`)
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {
           dispatch({
-            type: LOAD_STOCK_DATA,
-            payload: data
+            type: LOAD_KEY_STATS,
+            key_stats: data
+          });
+          console.log(data)
+        });
+      } else {
+        console.log("ERROR");
+      }
+    })
+    .catch(e => console.log(e));
+
+    fetch(`${stock_base_url}/${profile_endpoint}?token=${secret}`)
+    .then(data => {
+      if (data.status === 200) {
+        data.json().then(data => {
+          dispatch({
+            type: LOAD_STOCK_PROFILE,
+            profile: data
           });
           console.log(data)
         });

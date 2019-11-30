@@ -1,23 +1,28 @@
-import { LOAD_STOCK_DATA, START_LOAD_STOCK_DATA } from "../../actions/types";
+import {
+  LOAD_KEY_STATS,
+  LOAD_STOCK_PROFILE
+} from "../../actions/types";
 
 const initialState = {
-  payload: {},
-  loading: true
+  key_stats: {},
+  profile: {},
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOAD_STOCK_DATA:
+    case LOAD_KEY_STATS:
       return {
         ...state,
-        payload: action.payload,
-        loading: false
+        key_stats: action.key_stats,
       };
-    case START_LOAD_STOCK_DATA:
+      break;
+
+    case LOAD_STOCK_PROFILE:
       return {
         ...state,
-        loading: true
+        profile: action.profile,
       };
+      break;
 
     default:
       return state;

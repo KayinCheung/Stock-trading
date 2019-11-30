@@ -9,11 +9,12 @@ import RightColumn from "./rightColumn";
 
 import ApexCharts from "apexcharts";
 import loadStockData from "../../actions/loadStockData";
+import StockModal from "./modal.js";
 
 class Stock extends React.Component {
   componentDidMount() {
     let { loadStockData } = this.props;
-    loadStockData("AAPL")
+    loadStockData("AAPL");
     var options = {
       chart: {
         height: 350,
@@ -285,10 +286,13 @@ class Stock extends React.Component {
   }
 
   render() {
+    let { key_stats, profile } = this.props;
+    console.log(key_stats, profile)
     return (
       <div>
         <Header />
         <br />
+        <StockModal />
         <div className="App">
           <div className="columns is-centered">
             <div className="column is-two-third">
@@ -304,6 +308,9 @@ class Stock extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  key_stats: state.stock.key_stats,
+  profile: state.stock.profile
+});
 
 export default connect(mapStateToProps, { loadStockData })(Stock);
