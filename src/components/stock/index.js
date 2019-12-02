@@ -8,13 +8,21 @@ import LeftColumn from "./leftColumn";
 import RightColumn from "./rightColumn";
 
 import ApexCharts from "apexcharts";
+import { loadPortfolioData } from "../../actions/loadPortfolioData";
 import loadStockData from "../../actions/loadStockData";
-import StockModal from "./modal.js";
+import StockModal from "./modal/tradeConfirmation.js";
 
 class Stock extends React.Component {
   componentDidMount() {
-    let { loadStockData } = this.props;
-    loadStockData("AAPL");
+    const urlParams = new URLSearchParams(window.location.search);
+    const ticker = urlParams.get("ticker");
+    let { loadStockData, loadPortfolioData, portfolio_loaded } = this.props;
+    if (!portfolio_loaded) {
+      loadPortfolioData();
+    }
+
+    loadStockData(ticker);
+
     var options = {
       chart: {
         height: 350,
@@ -286,8 +294,8 @@ class Stock extends React.Component {
   }
 
   render() {
-    let { key_stats, profile } = this.props;
-    console.log(key_stats, profile)
+    let { key_stats, profile, portfolio_loaded } = this.props;
+    console.log(key_stats, profile);
     return (
       <div>
         <Header />
@@ -310,7 +318,11 @@ class Stock extends React.Component {
 
 const mapStateToProps = state => ({
   key_stats: state.stock.key_stats,
-  profile: state.stock.profile
+  profile: state.stock.profile,
+  portfolio_loaded: state.portfolio.loaded,
+  holdings: state.portfolio.holdings
 });
 
-export default connect(mapStateToProps, { loadStockData })(Stock);
+export default connect(mapStateToProps, { loadStockData, loadPortfolioData })(
+  Stock
+);

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Header from "../header";
 import { Link } from "react-router-dom";
 
-import loginAction from "../../actions/loginAction";
+import { loginAction } from "../../actions/loginAction";
 
 class Login extends React.Component {
   render() {
@@ -15,14 +15,22 @@ class Login extends React.Component {
           <div className="field column is-one-third">
             <label className="label">Username</label>
             <div className="control">
-              <input className="input" type="text" placeholder="John" id="login_name"/>
+              <input
+                className="input"
+                type="text"
+                placeholder="John"
+                id="login_name"
+              />
             </div>
             <p className="help" />
             <br />
             <Link to="/portfolio">
               <button
                 className="button is-fullwidth is-link"
-                onClick={() => this.props.loginAction(document.getElementById('login_name').value)}
+                onClick={() =>
+                  this.props.loginAction(
+                    document.getElementById("login_name").value
+                  )}
               >
                 Login
               </button>

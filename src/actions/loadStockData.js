@@ -1,6 +1,13 @@
-import { START_LOAD_STOCK_DATA, LOAD_STOCK_DATA, LOAD_KEY_STATS, LOAD_STOCK_PROFILE } from "./types";
+import {
+  START_LOAD_STOCK_DATA,
+  LOAD_STOCK_DATA,
+  LOAD_STOCK_CHART,
+  LOAD_KEY_STATS,
+  LOAD_STOCK_PROFILE,
+  LOAD_STOCK_QUOTE
+} from "./types";
 
-import { stock_base_url, secret } from "../config";
+import { stock_base_url, secret, sandbox_base_url } from "../config";
 /*
 Load stock data upon user clicking search. Possible outcomes:
 
@@ -14,11 +21,13 @@ const loadStockData = symbol => dispatch => {
   dispatch({
     type: START_LOAD_STOCK_DATA
   });
-  console.log(stock_base_url);
 
   const key_stats_endpoint = `stock/${symbol}/stats`;
   const profile_endpoint = `stock/${symbol}/company`;
-  //const price_endpoint = `stock/${symbol}/quote/`; //might not have data
+  const quote_endpoint = `stock/${symbol}/quote/close`; //Only for paid subscribers
+  const previous_close_endpoint = `stock/${symbol}/previous`;
+  const chart_endpoint = `stock/${symbol}/chart/1m`;
+
   fetch(`${stock_base_url}/${key_stats_endpoint}?token=${secret}`)
     .then(data => {
       if (data.status === 200) {
@@ -27,7 +36,7 @@ const loadStockData = symbol => dispatch => {
             type: LOAD_KEY_STATS,
             key_stats: data
           });
-          console.log(data)
+          console.log(data);
         });
       } else {
         console.log("ERROR");
@@ -35,7 +44,7 @@ const loadStockData = symbol => dispatch => {
     })
     .catch(e => console.log(e));
 
-    fetch(`${stock_base_url}/${profile_endpoint}?token=${secret}`)
+  fetch(`${stock_base_url}/${profile_endpoint}?token=${secret}`)
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {
@@ -43,7 +52,41 @@ const loadStockData = symbol => dispatch => {
             type: LOAD_STOCK_PROFILE,
             profile: data
           });
-          console.log(data)
+          console.log(data);
+        });
+      } else {
+        console.log("ERROR");
+      }
+    })
+    .catch(e => console.log(e));
+
+  fetch(`${stock_base_url}/${previous_close_endpoint}?token=${secret}`)
+    .then(data => {
+      if (data.status === 200) {
+        data.json().then(data => {
+          console.log(data.close);
+
+          dispatch({
+            type: LOAD_STOCK_QUOTE,
+            quote: data.close
+          });
+
+          document.getElementById("price_input").value = data.close;
+        });
+      } else {
+        console.log("ERROR");
+      }
+    })
+    .catch(e => console.log(e));
+
+  fetch(`${stock_base_url}/${chart_endpoint}?token=${secret}`)
+    .then(data => {
+      if (data.status === 200) {
+        data.json().then(data => {
+          dispatch({
+            type: LOAD_STOCK_CHART
+          });
+          console.log(data);
         });
       } else {
         console.log("ERROR");

@@ -1,14 +1,24 @@
-import { LOGIN } from "./types";
-import { saveToSessionStorage, loadFromSessionStorage } from "../store";
+import { LOGIN, LOGOUT } from "./types";
+import {
+  saveToSessionStorage,
+  loadFromSessionStorage,
+  removeFromSessionStorage
+} from "../store";
 /*
 
 */
 
-const loginAction = name => dispatch => {
+export const loginAction = name => dispatch => {
   dispatch({
     type: LOGIN
   });
   saveToSessionStorage(name);
 };
 
-export default loginAction;
+export const logoutAction = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
+  removeFromSessionStorage();
+};
+

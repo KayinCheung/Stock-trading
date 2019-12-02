@@ -2,8 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { submitTrade, selectSide } from "../../../actions/trade";
 class Trade extends React.Component {
+  componentDidMount(){ 
+    //document.getElementById("price_input").value = 200
+    document.getElementById("qty_input").value = 100
+
+  }
   render() {
-    let { submitTrade, selectSide, price, quantity, side } = this.props;
+    let { submitTrade, selectSide, quote, quantity, side } = this.props;
     return (
       <div className="whitebg padded">
         <p className="has-text-centered is-size-5 bold">Trade</p>
@@ -41,7 +46,7 @@ class Trade extends React.Component {
                   className="input"
                   type="number"
                   step="0.01"
-                  placeholder="67.18"
+                  min="0.01"
                   id="price_input"
                 />
                 <span className="icon is-small is-left">
@@ -59,7 +64,7 @@ class Trade extends React.Component {
                   className="input"
                   type="number"
                   step="1"
-                  placeholder="10"
+                  min="1"
                   id="qty_input"
                 />
               </p>
@@ -85,9 +90,11 @@ class Trade extends React.Component {
 
 const mapStateToProps = state => ({
   //current stock name
-  price: state.trade.price,
+  key_stats: state.stock.key_stats,  
+  quote: state.stock.quote,
   quantity: state.trade.quantity,
-  side: state.trade.side
+  side: state.trade.side,
+  
 });
 
 export default connect(mapStateToProps, { submitTrade, selectSide })(Trade);

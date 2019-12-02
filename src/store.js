@@ -2,23 +2,31 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
-export function saveToSessionStorage(name){
-  try{
-      console.log(name)
-      sessionStorage.setItem("name", name)
-  } catch(e){
-      console.log(e)
+export function saveToSessionStorage(name) {
+  try {
+    console.log(name);
+    sessionStorage.setItem("name", name);
+  } catch (e) {
+    console.log(e);
   }
 }
 
-export function loadFromSessionStorage(){
-  try{
-      const seralizedState = sessionStorage.getItem("name")
-      if (seralizedState === null) return undefined
-      return JSON.parse(seralizedState)
-  } catch(e){
-      console.log(e)
-      return undefined
+export function loadFromSessionStorage() {
+  try {
+    const seralizedState = sessionStorage.getItem("name");
+    if (seralizedState === null) return undefined;
+    return JSON.parse(seralizedState);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
+
+export function removeFromSessionStorage() {
+  try {
+    localStorage.removeItem("name");
+  } catch (e) {
+    console.log(e);
   }
 }
 
