@@ -12,7 +12,8 @@ const search = (symbol, history) => dispatch => {
       if (data.status === 200) {
         data.json().then(data => {
           dispatch({
-            type: SEARCH_SUCCESS
+            type: SEARCH_SUCCESS,
+            symbol: symbol
           });
           history.push(`/stock?ticker=${symbol}`)
         });

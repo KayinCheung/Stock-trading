@@ -4,3 +4,5 @@ export const stock_base_url = "https://cloud.iexapis.com/v1"
 export const sandbox_base_url = "https://sandbox.iexapis.com/v1"
 export const sandbox_secret = "Tsk_029aabd3163c4d8ab0aefd70266f98b2"
 export const backend_url = "http://localhost:5000"
+
+export const user = "kayin"

@@ -18,8 +18,10 @@ Load stock data upon user clicking search. Possible outcomes:
 */
 
 const loadStockData = symbol => dispatch => {
+  console.log("LOAD STOCK DATA", symbol)
   dispatch({
-    type: START_LOAD_STOCK_DATA
+    type: START_LOAD_STOCK_DATA,
+    symbol: symbol
   });
 
   const key_stats_endpoint = `stock/${symbol}/stats`;
@@ -84,7 +86,8 @@ const loadStockData = symbol => dispatch => {
       if (data.status === 200) {
         data.json().then(data => {
           dispatch({
-            type: LOAD_STOCK_CHART
+            type: LOAD_STOCK_CHART,
+            chart: data
           });
           console.log(data);
         });

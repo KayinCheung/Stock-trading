@@ -2,13 +2,17 @@ import {
   LOAD_KEY_STATS,
   LOAD_STOCK_PROFILE,
   LOAD_STOCK_QUOTE,
-  START_LOAD_STOCK_DATA
+  LOAD_STOCK_CHART,
+  START_LOAD_STOCK_DATA,
+  SEARCH_SUCCESS
 } from "../../actions/types";
 
 const initialState = {
   key_stats: {},
   profile: {},
-  quote: 0
+  chart: [],
+  quote: 0,
+  symbol: ""
 };
 
 export default function(state = initialState, action) {
@@ -18,7 +22,19 @@ export default function(state = initialState, action) {
         ...state,
         key_stats: {},
         profile: {},
-        quote: 0
+        chart: [],
+        quote: 0,
+        symbol: action.symbol
+      };
+
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        key_stats: {},
+        profile: {},
+        chart: [],
+        quote: 0,
+        symbol: action.symbol
       };
 
     case LOAD_KEY_STATS:
@@ -37,6 +53,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         quote: action.quote
+      };
+
+    case LOAD_STOCK_CHART:
+      return {
+        ...state,
+        chart: action.chart
       };
 
     default:

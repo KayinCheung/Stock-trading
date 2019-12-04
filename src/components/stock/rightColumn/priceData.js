@@ -29,7 +29,7 @@ class PriceData extends React.Component {
               </td>
               <td>Market Val</td>
               <td className="has-text-right ">
-                {(holdings[ticker] && quote) ? holdings[ticker].position * quote : "-"}
+                {(holdings[ticker] && quote) ? `$${Math.round(holdings[ticker].position * quote * 100)/100}` : "-"}
               </td>
             </tr>
           </tbody>

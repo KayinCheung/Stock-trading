@@ -6,7 +6,7 @@ function Header() {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <p className="navbar-item">
-          <Link to="/portfolio">Stock Trading App</Link>
+          <Link to="/">Stock Trading App</Link>
         </p>
       </div>
 
@@ -16,9 +16,6 @@ function Header() {
         </div>
         <div className="navbar-item">
           <Search />
-        </div>
-        <div className="navbar-item">
-          <Link to="/">Logout</Link>
         </div>
       </div>
     </nav>

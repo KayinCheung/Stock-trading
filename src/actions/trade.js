@@ -30,10 +30,10 @@ export const modalConfirmTrade = () => dispatch => {
   dispatch({
     type: MODAL_CONFIRM_TRADE
   });
+
 };
 
 export const selectSide = (side) => dispatch => {
-  //POST API TO BACKEND TO RECORD the trade
   dispatch({
     type: SELECT_SIDE,
     side: side

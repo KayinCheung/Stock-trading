@@ -1,7 +1,7 @@
 import {
   START_LOAD_PORTFOLIO_DATA,
   LOADED_PORTFOLIO_DATA,
-  LOADED_PORTFOLIO_STOCK_PRICE
+  LOADED_PORTFOLIO_STOCK_PRICE,
 } from "../../actions/types";
 
 const initialState = {
