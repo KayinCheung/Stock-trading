@@ -35,7 +35,7 @@ console.log(tradeHistory)
         <br />
         <div className="App">
           <div className="columns is-multiline is-centered">
-            <div className="column is-half">
+            <div className="column is-6">
               <Holdings
                 holdings={holdings}
                 stock_quotes={stock_quotes}
@@ -43,7 +43,7 @@ console.log(tradeHistory)
                 loaded={loaded}
               />
             </div>
-            <div className="column is-half">
+            <div className="column is-6">
               <TradeHistory
                 tradeHistory={tradeHistory}
                 loaded={tradeHistoryLoaded}

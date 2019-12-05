@@ -10,7 +10,7 @@ class Trade extends React.Component {
   render() {
     let { submitTrade, selectSide, quote, quantity, side } = this.props;
     return (
-      <div className="whitebg padded">
+      <div className="whitebg padded outline">
         <p className="has-text-centered is-size-5 bold">Trade</p>
         <p className="has-text-left is-size-7 bold">Select:</p>
         <div className="columns is-centered">
@@ -75,7 +75,7 @@ class Trade extends React.Component {
           className="button is-success is-fullwidth"
           onClick={() => {
             submitTrade(
-              "ABCD",
+              new URLSearchParams(window.location.search).get("ticker"),
               document.getElementById("price_input").value,
               document.getElementById("qty_input").value
             );

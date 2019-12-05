@@ -6,7 +6,7 @@ class CompanySummary extends React.Component {
     let { key_stats, profile } = this.props;
 
     return (
-      <div className="whitebg padded has-text-left">
+      <div className="whitebg padded has-text-left outline">
         <p className="bold is-size-5">Company Summary</p>
         <br />
         <p className="is-size-6">{profile.description}</p>

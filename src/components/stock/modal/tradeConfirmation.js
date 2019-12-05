@@ -29,12 +29,17 @@ class StockModal extends React.Component {
               <b>${quantity * price}</b>.
             </p>
             <br />
-            <button
-              className="button is-success"
-              onClick={() => modalConfirmTrade()}
-            >
-              Confirm and proceed with trade
-            </button>
+            <div className="buttons is-centered">
+              <button
+                className="button is-success"
+                onClick={() => modalConfirmTrade()}
+              >
+                Confirm
+              </button>
+              <button className="button is-danger" onClick={() => closeModal()}>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
         <button className="modal-close is-large" onClick={() => closeModal()} />
@@ -49,7 +54,7 @@ const mapStateToProps = state => ({
   side: state.trade.side,
   price: state.trade.price,
   quantity: state.trade.quantity,
-  symbol: state.trade.symbol,
+  symbol: state.trade.ticker,
   error: state.trade.error
 });
 

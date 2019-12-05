@@ -5,7 +5,7 @@ import KeyStats from "./keyStats";
 const LeftColumn = props => {
   return (
     <div>
-      <div id="stockchart" className="whitebg" />
+      <div id="stockchart" className="whitebg outline" />
       <br />
       <KeyStats />
       <br />

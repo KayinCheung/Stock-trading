@@ -6,7 +6,7 @@ class KeyStats extends React.Component {
     let { key_stats, profile } = this.props;
 
     return (
-      <div className="whitebg padded has-text-left">
+      <div className="whitebg padded has-text-left outline">
         <div className="columns">
           <div className="column is-half">
             <table className="table is-fullwidth">

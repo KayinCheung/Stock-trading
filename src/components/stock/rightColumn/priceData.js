@@ -9,7 +9,7 @@ class PriceData extends React.Component {
     let { key_stats, quote, holdings } = this.props;
     console.log(holdings);
     return (
-      <div className="whitebg">
+      <div className="whitebg outline">
         <table className="table is-fullwidth is-borderless">
           <thead className="bold">
             <tr>
