@@ -40,4 +40,3 @@ Due to API limitations, current price in ```/stock``` page uses yesterday's clos
 - If real time data source is available, in /stock page, the stock price can be updated in real time.
 - Save and show cost basis and unrealized P&L
 - Handle cases where user manually change the url ticker parameter into a ticker that does not exist.
-- Handle scenario when user clicks back when 
