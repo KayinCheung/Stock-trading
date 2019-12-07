@@ -68,25 +68,31 @@ export const createChart = (holdings, quotes) => dispatch => {
   console.log(holdings, quotes)
   let longSectorChart = {}
   let shortSectorChart = {}
+  let longShortChart = { long: 0, short: 0}
   Object.keys(holdings).map((stock, i) => { 
+    let val = Math.abs(holdings[stock].position * quotes[stock].previous.close)
 
     //Add to longSectorChart
     if (holdings[stock].position > 0){
-      console.log(stock, holdings[stock].position, holdings[stock].sector) 
       holdings[stock.sector] in longSectorChart ? 
-      longSectorChart[holdings[stock].sector] += holdings[stock].position * quotes[stock].previous.close :
-      longSectorChart[holdings[stock].sector] = holdings[stock].position * quotes[stock].previous.close
+      longSectorChart[holdings[stock].sector] += val :
+      longSectorChart[holdings[stock].sector] = val
+
+      longShortChart.long += val
     } else {
       holdings[stock.sector] in shortSectorChart ? 
-      shortSectorChart[holdings[stock].sector] += Math.abs(holdings[stock].position * quotes[stock].previous.close) :
-      shortSectorChart[holdings[stock].sector] = Math.abs(holdings[stock].position * quotes[stock].previous.close)
+      shortSectorChart[holdings[stock].sector] += val :
+      shortSectorChart[holdings[stock].sector] = val
+
+      longShortChart.short += val
     }
   })
   //return(longSectorChart, shortSectorChart)
   dispatch({
     type: CHARTS_CREATED,
     longChart: longSectorChart,
-    shortChart: shortSectorChart
+    shortChart: shortSectorChart,
+    longShortChart: longShortChart
   })
 
 }

@@ -16,6 +16,7 @@ import { user } from "../../config";
 import ApexCharts from "apexcharts";
 var chart;
 var chart2;
+
 class Portfolio extends React.Component {
   componentDidMount() {
     let { loadPortfolioData, loadTradeHistory } = this.props;
@@ -24,13 +25,13 @@ class Portfolio extends React.Component {
 
     var options = {
       chart: {
-        height: 250,
+        height: 350,
         type: "donut"
       },
       series: [],
       title: {
-        text: `Long sector distribution`,
-        align: "left"
+        //text: `Long sector distribution`,
+        //align: "center"
       }
     };
 
@@ -38,37 +39,27 @@ class Portfolio extends React.Component {
 
     chart.render();
 
-    var options2 = {
-      chart: {
-        height: 250,
-        type: "donut"
-      },
-      series: [],
-      title: {
-        text: `Short sector distribution`,
-        align: "left"
-      }
-    };
-
     chart2 = new ApexCharts(
       document.querySelector("#portfoliochart2"),
-      options2
+      options
     );
 
     chart2.render();
+
   }
 
   componentDidUpdate(prevProps) {
-    let { longChart, shortChart } = this.props;
+    let { longChart, shortChart, longShortChart } = this.props;
     if (prevProps.longChart !== longChart) {
       chart.updateOptions({
-        labels: Object.keys(longChart)
+        labels: Object.keys(longChart),
       });
       chart.updateSeries(Object.values(longChart));
       chart2.updateOptions({
-        labels: Object.keys(shortChart)
+        labels: Object.keys(shortChart),
       });
       chart2.updateSeries(Object.values(shortChart));
+
     }
   }
 
@@ -86,17 +77,21 @@ class Portfolio extends React.Component {
         <Header />
         <br />
         <div className="App">
-          <div className="columns is-multiline is-centered">
-          <div className="column is-4">
-              <div id="portfoliochart3" />
+          <div className="columns is-multiline is-centered is-desktop">
+
+            <div className="column is-half">
+              <div>
+                <p>Long holdings</p>
+                <div id="portfoliochart" />
+              </div>
             </div>
-            <div className="column is-4">
-              <div id="portfoliochart" />
-            </div>
-            <div className="column is-4">
+            <div className="column is-half">
+
+              <p>Short holdings</p>
+
               <div id="portfoliochart2" />
             </div>
-            <div className="column is-6">
+            <div className="column is-half">
               <Holdings
                 holdings={holdings}
                 stock_quotes={stock_quotes}
@@ -104,14 +99,16 @@ class Portfolio extends React.Component {
                 loaded={loaded}
               />
             </div>
-
-            <div className="column is-6">
+            <div className="column is-half">
               <TradeHistory
                 tradeHistory={tradeHistory}
                 loaded={tradeHistoryLoaded}
               />
             </div>
+
+
           </div>
+
         </div>
       </div>
     );
@@ -126,6 +123,7 @@ const mapStateToProps = state => ({
 
   longChart: state.portfolio.longChart,
   shortChart: state.portfolio.shortChart,
+  longShortChart: state.portfolio.longShortChart,
 
   tradeHistory: state.tradeHistory.tradeHistory,
   tradeHistoryLoaded: state.tradeHistory.loaded

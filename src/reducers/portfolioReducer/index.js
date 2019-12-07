@@ -13,7 +13,8 @@ const initialState = {
   portfolio_loaded: false,
   stock_quotes_loaded: false,
   longChart: {},
-  shortChart: {}
+  shortChart: {},
+  longShortChart: {}
 };
 
 export default function(state = initialState, action) {
@@ -44,7 +45,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         longChart: action.longChart,
-        shortChart: action.shortChart
+        shortChart: action.shortChart,
+        longShortChart: action.longShortChart
       };
 
     default:
