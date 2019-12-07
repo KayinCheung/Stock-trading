@@ -23,7 +23,6 @@ export const loadPortfolioData = () => dispatch => {
             type: LOADED_PORTFOLIO_DATA,
             payload: data
           });
-          console.log(data);
 
           dispatch(loadPortfolioStockPrices(data.stock));
         });
@@ -49,7 +48,6 @@ export const loadPortfolioStockPrices = stocks => dispatch => {
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {
-          console.log(data);
           dispatch({
             type: LOADED_PORTFOLIO_STOCK_PRICE,
             payload: data
@@ -65,7 +63,6 @@ export const loadPortfolioStockPrices = stocks => dispatch => {
 };
 
 export const createChart = (holdings, quotes) => dispatch => {
-  console.log(holdings, quotes)
   let longSectorChart = {}
   let shortSectorChart = {}
   let longShortChart = { long: 0, short: 0 }

@@ -18,7 +18,6 @@ Load stock data upon user clicking search. Possible outcomes:
 */
 
 const loadStockData = symbol => dispatch => {
-  console.log("LOAD STOCK DATA", symbol)
   dispatch({
     type: START_LOAD_STOCK_DATA,
     symbol: symbol
@@ -38,7 +37,6 @@ const loadStockData = symbol => dispatch => {
             type: LOAD_KEY_STATS,
             key_stats: data
           });
-          console.log(data);
         });
       } else {
         console.log("ERROR");
@@ -54,7 +52,6 @@ const loadStockData = symbol => dispatch => {
             type: LOAD_STOCK_PROFILE,
             profile: data
           });
-          console.log(data);
         });
       } else {
         console.log("ERROR");
@@ -66,8 +63,6 @@ const loadStockData = symbol => dispatch => {
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {
-          console.log(data.close);
-
           dispatch({
             type: LOAD_STOCK_QUOTE,
             quote: data.close
@@ -89,7 +84,6 @@ const loadStockData = symbol => dispatch => {
             type: LOAD_STOCK_CHART,
             chart: data
           });
-          console.log(data);
         });
       } else {
         console.log("ERROR");

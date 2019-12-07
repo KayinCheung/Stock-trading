@@ -45,7 +45,6 @@ class Portfolio extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { longChart, shortChart, longShortChart, cash } = this.props;
-    console.log(cash);
     if (prevProps.longChart !== longChart) {
       chart.updateOptions({
         labels: Object.keys(longChart).concat("Cash")

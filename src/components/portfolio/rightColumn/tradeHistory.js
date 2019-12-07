@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const TradeHistory = props => {
   const usd = <span className="is-size-7">&nbsp;USD</span>;
-  console.log(props.tradeHistory);
   const thead = (
     <thead className="bold">
       <tr>

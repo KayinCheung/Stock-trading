@@ -7,7 +7,6 @@ class PriceData extends React.Component {
     const ticker = urlParams.get("ticker");
 
     let { key_stats, quote, holdings } = this.props;
-    console.log(holdings);
     return (
       <div className="whitebg outline">
         <table className="table is-fullwidth is-borderless">
