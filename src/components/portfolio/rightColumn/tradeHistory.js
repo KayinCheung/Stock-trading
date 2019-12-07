@@ -28,7 +28,7 @@ const TradeHistory = props => {
   }
   return (
     <div className="whitebg">
-      <p className="is-size-4">Trade History</p>
+      <p className="is-size-4">Last 10 Trades</p>
       <table className="table is-fullwidth">
         {thead}
         <tbody>
@@ -49,7 +49,7 @@ const TradeHistory = props => {
                   {Math.round(trade.price * trade.quantity * 100) / 100}
                   {usd}
                 </td>
-                <td>{trade.createdAt}</td>
+                <td>{new Date(trade.createdAt).toLocaleString()}</td>
               </tr>
             );
           })}

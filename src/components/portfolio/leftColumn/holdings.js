@@ -9,6 +9,7 @@ const Holdings = props => {
       <tr>
         <td>Symbol</td>
         <td>Quantity</td>
+        <td>Cost Basis</td>
         <td>Current Price</td>
         <td>Market Value</td>
       </tr>
@@ -38,6 +39,7 @@ const Holdings = props => {
                   <Link to={`/stock?ticker=${stock}`}>{stock}</Link>
                 </td>
                 <td>{props.holdings[stock].position}</td>
+                <td>{props.holdings[stock].cost_basis} {usd}</td>
                 <td>
                   {props.stock_quotes[stock].previous.close}
                   {usd}
@@ -56,9 +58,10 @@ const Holdings = props => {
           <tr>
             <td />
             <td />
+            <td />
             <td className="bold">Cash</td>
             <td>
-              {props.cash.USD} {usd}
+              {props.cash} {usd}
             </td>
           </tr>
         </tbody>

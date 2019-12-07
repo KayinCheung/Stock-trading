@@ -25,14 +25,10 @@ class Portfolio extends React.Component {
 
     var options = {
       chart: {
-        height: 350,
+        height: 280,
         type: "donut"
       },
-      series: [],
-      title: {
-        //text: `Long sector distribution`,
-        //align: "center"
-      }
+      series: []
     };
 
     chart = new ApexCharts(document.querySelector("#portfoliochart"), options);
@@ -45,21 +41,20 @@ class Portfolio extends React.Component {
     );
 
     chart2.render();
-
   }
 
   componentDidUpdate(prevProps) {
-    let { longChart, shortChart, longShortChart } = this.props;
+    let { longChart, shortChart, longShortChart, cash } = this.props;
+    console.log(cash);
     if (prevProps.longChart !== longChart) {
       chart.updateOptions({
-        labels: Object.keys(longChart),
+        labels: Object.keys(longChart).concat("Cash")
       });
-      chart.updateSeries(Object.values(longChart));
+      chart.updateSeries(Object.values(longChart).concat(cash));
       chart2.updateOptions({
-        labels: Object.keys(shortChart),
+        labels: Object.keys(shortChart)
       });
       chart2.updateSeries(Object.values(shortChart));
-
     }
   }
 
@@ -70,28 +65,27 @@ class Portfolio extends React.Component {
       cash,
       loaded,
       tradeHistory,
-      tradeHistoryLoaded
+      tradeHistoryLoaded,
+      longShortChart
     } = this.props;
+
     return (
       <div>
-        <Header />
+        <Header/>
         <br />
         <div className="App">
-          <div className="columns is-multiline is-centered is-desktop">
-
-            <div className="column is-half">
+          <div className="columns is-multiline is-centered">
+            <div className="column is-half-desktop is-12-tablet">
               <div>
-                <p>Long holdings</p>
+                <p>{loaded ? `Long holdings: $${longShortChart.long}` : ""}</p>
                 <div id="portfoliochart" />
               </div>
             </div>
-            <div className="column is-half">
-
-              <p>Short holdings</p>
-
+            <div className="column is-half-desktop is-12-tablet">
+              <p>{loaded ? `Short holdings: $${longShortChart.short}` : ""}</p>
               <div id="portfoliochart2" />
             </div>
-            <div className="column is-half">
+            <div className="column is-half-desktop is-12-tablet">
               <Holdings
                 holdings={holdings}
                 stock_quotes={stock_quotes}
@@ -99,16 +93,13 @@ class Portfolio extends React.Component {
                 loaded={loaded}
               />
             </div>
-            <div className="column is-half">
+            <div className="column is-half-desktop is-12-tablet">
               <TradeHistory
                 tradeHistory={tradeHistory}
                 loaded={tradeHistoryLoaded}
               />
             </div>
-
-
           </div>
-
         </div>
       </div>
     );

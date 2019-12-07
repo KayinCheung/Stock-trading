@@ -8,7 +8,7 @@ class Trade extends React.Component {
 
   }
   render() {
-    let { submitTrade, selectSide, quote, quantity, side } = this.props;
+    let { submitTrade, selectSide, quote, quantity, side, error } = this.props;
     return (
       <div className="whitebg padded outline">
         <p className="has-text-centered is-size-5 bold">Trade</p>
@@ -81,8 +81,9 @@ class Trade extends React.Component {
             );
           }}
         >
-          Submit Limit Order
+          Submit Order
         </button>
+        <p className="is-size-7 has-text-danger">{error ? 'Invalid quantity and/or price.' : ''}</p>
       </div>
     );
   }
@@ -94,6 +95,7 @@ const mapStateToProps = state => ({
   quote: state.stock.quote,
   quantity: state.trade.quantity,
   side: state.trade.side,
+  error: state.trade.error
   
 });
 

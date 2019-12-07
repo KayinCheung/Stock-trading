@@ -68,11 +68,10 @@ export const createChart = (holdings, quotes) => dispatch => {
   console.log(holdings, quotes)
   let longSectorChart = {}
   let shortSectorChart = {}
-  let longShortChart = { long: 0, short: 0}
+  let longShortChart = { long: 0, short: 0 }
   Object.keys(holdings).map((stock, i) => { 
-    let val = Math.abs(holdings[stock].position * quotes[stock].previous.close)
+    let val = Math.abs((holdings[stock].position * quotes[stock].previous.close).toFixed(2))
 
-    //Add to longSectorChart
     if (holdings[stock].position > 0){
       holdings[stock.sector] in longSectorChart ? 
       longSectorChart[holdings[stock].sector] += val :
@@ -87,7 +86,6 @@ export const createChart = (holdings, quotes) => dispatch => {
       longShortChart.short += val
     }
   })
-  //return(longSectorChart, shortSectorChart)
   dispatch({
     type: CHARTS_CREATED,
     longChart: longSectorChart,

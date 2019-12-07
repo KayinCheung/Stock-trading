@@ -10,7 +10,7 @@ import store from "../store";
 
 export const submitTrade = (ticker, price, quantity) => dispatch => {
   console.log(ticker, price, quantity);
-  if (price <= 0 && quantity <= 0) {
+  if (price <= 0 || quantity <= 0) {
     dispatch({
       type: SUBMIT_INVALID_TRADE,
       ticker: ticker,

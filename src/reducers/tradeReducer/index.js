@@ -20,7 +20,8 @@ export default function(state = initialState, action) {
     case SELECT_SIDE:
       return {
         ...state,
-        side: action.side
+        side: action.side,
+        error: false
       };
     case SUBMIT_TRADE:
       return {
@@ -38,7 +39,7 @@ export default function(state = initialState, action) {
         price: action.price,
         quantity: action.quantity,
         ticker: action.ticker,
-        showModal: true,
+        showModal: false,
         error: true
       };
 
