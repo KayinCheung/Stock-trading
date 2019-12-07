@@ -1,5 +1,12 @@
 # Stock trading application
 
+## Deployed at
+
+Link: http://18.136.211.239/
+Using AWS EC2 + Nginx.
+
+Built with React, Redux, React Router for frontend, NodeJS Express for backend and MongoDB.
+
 ## Requirements
 1) Support user stock search. 
 2) Show stock's market information
