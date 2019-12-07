@@ -2,6 +2,7 @@ import {
   START_LOAD_PORTFOLIO_DATA,
   LOADED_PORTFOLIO_DATA,
   LOADED_PORTFOLIO_STOCK_PRICE,
+  CHARTS_CREATED
 } from "../../actions/types";
 
 const initialState = {
@@ -10,7 +11,9 @@ const initialState = {
   stock_quotes: {},
   loaded: false,
   portfolio_loaded: false,
-  stock_quotes_loaded: false
+  stock_quotes_loaded: false,
+  longChart: {},
+  shortChart: {}
 };
 
 export default function(state = initialState, action) {
@@ -18,13 +21,13 @@ export default function(state = initialState, action) {
     case START_LOAD_PORTFOLIO_DATA:
       return {
         ...state,
-        loaded: false
+        initialState
       };
     case LOADED_PORTFOLIO_DATA:
       return {
         ...state,
         portfolio_loaded: true,
-        loaded: (true && state.stock_quotes_loaded),
+        loaded: true && state.stock_quotes_loaded,
         holdings: action.payload.stock,
         cash: action.payload.cash
       };
@@ -33,8 +36,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         stock_quotes_loaded: true,
-        loaded: (true && state.portfolio_loaded),
+        loaded: true && state.portfolio_loaded,
         stock_quotes: action.payload
+      };
+
+    case CHARTS_CREATED:
+      return {
+        ...state,
+        longChart: action.longChart,
+        shortChart: action.shortChart
       };
 
     default:
