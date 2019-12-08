@@ -3,7 +3,8 @@
 ## Deployed at
 
 Link: http://18.136.211.239/
-Using AWS EC2 + Nginx.
+
+Deployed using AWS EC2 + Nginx.
 
 Built with React, Redux, React Router for frontend, NodeJS Express for backend and MongoDB.
 
@@ -38,7 +39,7 @@ If invalid inputs are entered (quantity or price <=0), an error msg appears when
 ### /Portfolio page
 Graphs to show user's sector distribution of stocks. One seperate donut chart for long and short.
 
-Left column shows user's portfolio holdings. In this demo, portfoio holdings are hard coded in the backend.
+Left column shows user's portfolio holdings. In this demo, portfoio holdings symbol, quantity and cost basis columns are hard coded in the backend.
 
 Right column shows user's last 10 trades in the app.
 
