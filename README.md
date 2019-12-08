@@ -61,4 +61,5 @@ Due to API limitations, current price in ```/stock``` page uses yesterday's clos
 - Save and show cost basis and unrealized P&L.
 - Handle cases where user manually change the url ticker parameter into a ticker that does not exist.
 - Write unit tests.
+- More error handling, such as unavailable backend or iexcloud.
 - Login/signup infrastructure
